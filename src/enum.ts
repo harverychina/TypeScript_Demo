@@ -59,3 +59,57 @@ console.log(e1 === e3)
 
 let g1: G = G.b
 let g2: G.a = G.a
+
+// 接口
+interface List {
+  // 只读属性
+  readonly id: number;
+  name: string;
+  // 字符串格式签名
+  // [x: string]: any;
+  age?: number
+}
+
+interface Result {
+  data: List[]
+}
+
+function render(result: Result) {
+  result.data.forEach((value) =>  {
+    console.log(value.id, value.name)
+    if(value.age) {
+      console.log(value.age)
+    }
+    // value.id++
+  })
+}
+
+let result = {
+  data: [
+    {id: 1, name: 'A', sex: 'male'},
+    {id: 2, name: 'B', age: 10}
+  ]
+}
+render(result)
+// 类型断言
+// render ({
+//   data: [
+//     {id:1, name: 'A', sex: 'male'},
+//     {id:2, name: 'B'}
+//   ]
+// }as Result)
+
+
+// 可索引接口，可以数字，也可以字符
+interface StringArray {
+  [index: number]: string
+}
+let chars: StringArray = ['A', 'B', 'C']
+
+interface Names {
+  // [x: string]: string
+  [x: string]: any
+  // y: number;
+  [z: number]: string
+}
+
